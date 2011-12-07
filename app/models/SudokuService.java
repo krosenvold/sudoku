@@ -76,7 +76,7 @@ public class SudokuService {
         return boxRow * mBoxSize + boxCol;
     }
 
-    public int[][] getmBoard() {
+    public int[][] getBoard() {
         return mBoard;
     }
 

@@ -1,38 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>
+#{extends 'main.html' /}
+#{set title:'Home' /}
 
-
-
-
-
-
-  <div>
+<div>
     <div>
-      <form method="get" target="_blank" onsubmit="return window.confirm(&quot;Du sender informasjon til en ekstern side. \nEr du sikker?&quot;);">
-          <table>
-            <tbody>
-              <tr>
-                <td><input type="text" name="0x0" value=""></td>
-                <td><input type="text" name="0x1" value=""></td>
-                <td><input type="text" name="0x2" value=""></td>
-              </tr>
-              <tr>
-                <td><input type="text" name="1x0" value=""></td>
-                <td><input type="text" name="1x1" value=""></td>
-                <td><input type="text" name="1x2" value=""></td>
-              </tr>
-              <tr>
-                <td><input type="text" name="2x0" value=""></td>
-                <td><input type="text" name="2x1" value=""></td>
-                <td><input type="text" name="2x2" value=""></td>
-              </tr>
-              <tr>
-                <td colspan="3"><input type="submit" value="Go ⇒">
-              </td></tr>
-            </tbody>
-          </table>
-      </form>
+        <form method="get" >
+        <table>
+                <tbody>
+                %{
+                board.eachWithIndex{ row, x ->
+                }%
+                <tr>
+                %{ row.eachWithIndex { obj, y -> }%
+                    <td><input type="text" name="${x}x${y}" value="${obj}"></td>
+                %{ } }%
+                </tr>
+                %{ } }%
+                <tr>
+                    <td colspan="3"><input type="submit" value="Go ⇒">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
     </div>
-  </div>
+</div>
 
-</body></html>
+</body>
+</html>

@@ -1,15 +1,12 @@
-package models;
-
+import models.SudokuService;
 import org.junit.Before;
 import org.junit.Test;
-
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
+import play.test.UnitTest;
 
 /**
  * @author Kristian Rosenvold
  */
-public class SudokuServiceTest {
+public class SudokuServiceTest extends UnitTest {
 
     private int[][] puzzle;
     private int[][] expected;
@@ -46,7 +43,7 @@ public class SudokuServiceTest {
         SudokuService sudokuService = new SudokuService(puzzle);
         final boolean solve = sudokuService.solve();
         assertTrue(solve);
-        final int[][] actual = sudokuService.getmBoard();
+        final int[][] actual = sudokuService.getBoard();
         for (int x = 0; x < puzzle.length; x++ ){
             for (int y = 0; y < puzzle.length; y++ ){
                 assertEquals( "Mismatch at [" + x +"][" + y +"]",  expected[x][y], actual[x][y]);
