@@ -13,7 +13,7 @@ public class Sudoku extends Controller  {
       int dim = 9;
       final int[][] puzzleFromParams = createPuzzleFromParams(dim, params);
       SudokuService solver = new SudokuService(puzzleFromParams);
-      solver.solve();
+      if (!isAllNull(puzzleFromParams)) solver.solve();
       final int[][] board = solver.getBoard();
       render(board);
   }
@@ -26,10 +26,18 @@ public class Sudoku extends Controller  {
                String paramName = x + "x" + y;
                String s = params1.get(paramName);
                if (s == null || s.trim().length() == 0)  s = "0";
-               System.out.println("s = " + s);
                puzzle[ x][y] = Integer.valueOf( s);
            }
        }
        return puzzle;
    }
+
+    private static boolean isAllNull(int[][] puzzle){
+        for (int x= 0; x < puzzle.length; x++){
+            for (int y= 0; y < puzzle.length; y++){
+                if (puzzle[x][y] != 0) return false;
+            }
+        }
+        return true;
+    }
 }

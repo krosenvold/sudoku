@@ -1,5 +1,5 @@
-07 Dec 2011 23:25:43,177 INFO  ~ Starting /home/kristian/sudoku
-07 Dec 2011 23:25:43,524 WARN  ~ You're running Play! in DEV mode
-07 Dec 2011 23:25:43,569 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
-07 Dec 2011 23:25:48,844 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
-07 Dec 2011 23:25:48,865 INFO  ~ Application 'sudoku' is now started !
+07 Dec 2011 23:40:21,492 INFO  ~ Starting /home/kristian/sudoku
+07 Dec 2011 23:40:21,839 WARN  ~ You're running Play! in DEV mode
+07 Dec 2011 23:40:21,884 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+07 Dec 2011 23:40:50,208 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+07 Dec 2011 23:40:50,223 INFO  ~ Application 'sudoku' is now started !
