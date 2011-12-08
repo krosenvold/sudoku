@@ -2,23 +2,23 @@ package models;
 
 public class SudokuService {
 
-    private final int mBoard[][];
-    private final int mBoardSize;
-    private final int mBoxSize;
-    private final boolean mRowSubset[][];
-    private final boolean mColSubset[][];
-    private final boolean mBoxSubset[][];
+    private final int board[][];
+    private final int boardSize;
+    private final int boxSize;
+    private final boolean rowSubset[][];
+    private final boolean colSubset[][];
+    private final boolean boxSubset[][];
 
     public SudokuService(int board[][]) {
-        mBoard = board;
-        mBoardSize = mBoard.length;
-        mBoxSize = (int) Math.sqrt(mBoardSize);
-        mRowSubset = new boolean[mBoardSize][mBoardSize];
-        mColSubset = new boolean[mBoardSize][mBoardSize];
-        mBoxSubset = new boolean[mBoardSize][mBoardSize];
-        for (int i = 0; i < mBoard.length; i++) {
-            for (int j = 0; j < mBoard.length; j++) {
-                int value = mBoard[i][j];
+        this.board = board;
+        boardSize = this.board.length;
+        boxSize = (int) Math.sqrt(boardSize);
+        rowSubset = new boolean[boardSize][boardSize];
+        colSubset = new boolean[boardSize][boardSize];
+        boxSubset = new boolean[boardSize][boardSize];
+        for (int i = 0; i < this.board.length; i++) {
+            for (int j = 0; j < this.board.length; j++) {
+                int value = this.board[i][j];
                 if (value != 0) {
                     setSubsetValue(i, j, value, true);
                 }
@@ -28,9 +28,9 @@ public class SudokuService {
     }
 
     private void setSubsetValue(int i, int j, int value, boolean present) {
-        mRowSubset[i][value - 1] = present;
-        mColSubset[j][value - 1] = present;
-        mBoxSubset[computeBoxNo(i, j)][value - 1] = present;
+        rowSubset[i][value - 1] = present;
+        colSubset[j][value - 1] = present;
+        boxSubset[computeBoxNo(i, j)][value - 1] = present;
     }
 
     public boolean solve() {
@@ -38,18 +38,18 @@ public class SudokuService {
     }
 
     public boolean solve(int i, int j) {
-        if (i == mBoardSize) {
+        if (i == boardSize) {
             i = 0;
-            if (++j == mBoardSize) {
+            if (++j == boardSize) {
                 return true;
             }
         }
-        if (mBoard[i][j] != 0) {
+        if (board[i][j] != 0) {
             return solve(i + 1, j);
         }
-        for (int value = 1; value <= mBoardSize; value++) {
+        for (int value = 1; value <= boardSize; value++) {
             if (isValid(i, j, value)) {
-                mBoard[i][j] = value;
+                board[i][j] = value;
                 setSubsetValue(i, j, value, true);
                 if (solve(i + 1, j)) {
                     return true;
@@ -58,7 +58,7 @@ public class SudokuService {
             }
         }
 
-        mBoard[i][j] = 0;
+        board[i][j] = 0;
         return false;
     }
 
@@ -66,18 +66,18 @@ public class SudokuService {
         val--;
         boolean
                 isPresent =
-                mRowSubset[i][val] || mColSubset[j][val] || mBoxSubset[computeBoxNo(i, j)][val];
+                rowSubset[i][val] || colSubset[j][val] || boxSubset[computeBoxNo(i, j)][val];
         return !isPresent;
     }
 
     private int computeBoxNo(int i, int j) {
-        int boxRow = i / mBoxSize;
-        int boxCol = j / mBoxSize;
-        return boxRow * mBoxSize + boxCol;
+        int boxRow = i / boxSize;
+        int boxCol = j / boxSize;
+        return boxRow * boxSize + boxCol;
     }
 
     public int[][] getBoard() {
-        return mBoard;
+        return board;
     }
 
 }
